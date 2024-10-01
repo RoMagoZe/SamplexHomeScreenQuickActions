@@ -26,11 +26,11 @@ enum QuickAction: String, CaseIterable {
     var imageName: String {
         switch self {
         case .one:
-            return "one"
+            return "star"
         case .two:
-            return "two"
+            return "bell"
         case .three:
-            return "three"
+            return "book"
         }
     }
 
