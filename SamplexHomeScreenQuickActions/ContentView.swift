@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 enum QuickAction: String, CaseIterable {
     case one = "one"
     case two = "two"
@@ -93,6 +92,10 @@ class QuickActionState: ObservableObject {
     // またQuickActionがnilでは無いということは、クイックアクションからアプリを開いたということなので、
     // isEnteredFromQuickActionのフラグを切り替える
     func selectAction(by shortcutItem: UIApplicationShortcutItem?) {
+        if let shortcutItem = shortcutItem {
+                print("Shortcut item type: \(shortcutItem.type)")
+            }
+
         let action = QuickAction(shortcutItem: shortcutItem)
         selectedAction = action
         isEnteredFromQuickAction = action == nil ? false : true
@@ -117,13 +120,13 @@ struct ContentView: View {
     private var backgroundColor: Color {
         switch quickActionsState.selectedAction {
         case .one:
-                .red
+            return .red
         case .two:
-                .blue
+            return .blue
         case .three:
-                .yellow
+            return .yellow
         case .none:
-                .white
+            return .white
         }
     }
 
@@ -136,12 +139,28 @@ struct ContentView: View {
                 .fill(backgroundColor)
                 .ignoresSafeArea()
 
-            if let action = quickActionsState.selectedAction {
-                Image(systemName: action.imageName)
-                    .resizable()
-                    .frame(width: 150, height: 200)
-                    .foregroundColor(action == .three ? .black : .white)
+            VStack {
+                if let action = quickActionsState.selectedAction {
+                    Image(systemName: action.imageName)
+                        .resizable()
+                        .frame(width: 150, height: 200)
+
+                    Text("Selected Action: \(action.rawValue)")  // 現在のアクションを表示
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                } else {
+                    Text("No Action Selected")  // アクションが選択されていない場合の表示
+                        .font(.largeTitle)
+                        .foregroundColor(.gray)
+                }
             }
+
+//            if let action = quickActionsState.selectedAction {
+//                Image(systemName: action.imageName)
+//                    .resizable()
+//                    .frame(width: 150, height: 200)
+//                    .foregroundColor(action == .three ? .black : .white)
+//            }
         }
     }
 }
