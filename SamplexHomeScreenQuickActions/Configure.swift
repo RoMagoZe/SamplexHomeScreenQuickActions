@@ -10,7 +10,8 @@ import SwiftUI
 struct Configure: View {
     @Binding var showConfiguration: Bool
     let classifications = QuickAction.allCases
-    @State private var selectedActions: [QuickAction] = []
+//    @State private var selectedActions: [QuickAction] = []
+    @EnvironmentObject var quickActionState: QuickActionState
 
     var body: some View {
         NavigationView {
@@ -19,13 +20,9 @@ struct Configure: View {
                     Text(action.rawValue.capitalized)
                     Spacer()
                     Button {
-                        if let index = selectedActions.firstIndex(of: action) {
-                            selectedActions.remove(at: index)
-                        } else {
-                            selectedActions.append(action)
-                        }
+                        quickActionState.toggleAction(action)
                     } label: {
-                        Image(systemName: selectedActions.contains(action)
+                        Image(systemName: quickActionState.selectedActions.contains(action)
                               ? "checkmark.square.fill"
                               : "square"
                         )

@@ -101,15 +101,24 @@ class QuickActionState: ObservableObject {
 
     // 選択されたクイックアクションをパブリッシュする為の変数
     @Published var selectedAction: QuickAction?
+    @Published var selectedActions: [QuickAction] = []
     // クイックアクションからアプリを開いたかどうかでUIを変更する為のフラグ
     private var isEnteredFromQuickAction = false
 
     // 定義したクイックアクションをUIApplication.shared.shortcutItemsに渡す関数
     func setActions() {
-        let shortcutItems = QuickAction.allCases.map { $0.shortcutItem }
+        let shortcutItems = selectedActions.map { $0.shortcutItem }
         UIApplication.shared.shortcutItems = shortcutItems
     }
-
+    
+    func toggleAction(_ action: QuickAction) {
+        if let index = selectedActions.firstIndex(of: action) {
+            selectedActions.remove(at: index)
+        } else {
+            selectedActions.append(action)
+        }
+        setActions()
+    }
     // クイックアクションが選択された場合にそのクイックアクションに紐づくUIApplicationShortcutItemが渡ってくる
     // そのUIApplicationShortcutItemからQuickActionを生成して、selectedActionに渡す
     // またQuickActionがnilでは無いということは、クイックアクションからアプリを開いたということなので、
@@ -199,6 +208,7 @@ struct ContentView: View {
         }
         if showConfiguration {
             Configure(showConfiguration: $showConfiguration)
+                .environmentObject(quickActionsState)
         }
     }
 }
