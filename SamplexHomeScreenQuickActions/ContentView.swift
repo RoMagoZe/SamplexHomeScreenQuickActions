@@ -11,6 +11,8 @@ enum QuickAction: String, CaseIterable {
     case one = "one"
     case two = "two"
     case three = "three"
+    case four = "four"
+    case five = "five"
 
 
     /// クイックアクションからアプリを開いた際にUIApplicationShortcutItemを取得
@@ -30,6 +32,10 @@ enum QuickAction: String, CaseIterable {
             return "bell"
         case .three:
             return "book"
+        case .four:
+            return "paperplane"
+        case .five:
+            return "pencil"
         }
     }
 
@@ -65,6 +71,22 @@ enum QuickAction: String, CaseIterable {
                 type: self.rawValue,
                 localizedTitle: self.rawValue,
                 localizedSubtitle: "threeです",
+                icon: UIApplicationShortcutIcon(systemImageName: self.imageName)
+            )
+
+        case .four:
+            UIMutableApplicationShortcutItem(
+                type: self.rawValue,
+                localizedTitle: self.rawValue,
+                localizedSubtitle: "fourです",
+                icon: UIApplicationShortcutIcon(systemImageName: self.imageName)
+            )
+
+        case .five:
+            UIMutableApplicationShortcutItem(
+                type: self.rawValue,
+                localizedTitle: self.rawValue,
+                localizedSubtitle: "fiveです",
                 icon: UIApplicationShortcutIcon(systemImageName: self.imageName)
             )
         }
@@ -125,6 +147,10 @@ struct ContentView: View {
             return .blue
         case .three:
             return .yellow
+        case .four:
+            return .indigo
+        case .five:
+            return .mint
         case .none:
             return .white
         }
@@ -140,27 +166,21 @@ struct ContentView: View {
                 .ignoresSafeArea()
 
             VStack {
+                // クイックアクションが選択されている場合
                 if let action = quickActionsState.selectedAction {
                     Image(systemName: action.imageName)
                         .resizable()
-                        .frame(width: 150, height: 200)
+                        .frame(width: 100, height: 100)
 
-                    Text("Selected Action: \(action.rawValue)")  // 現在のアクションを表示
+                    Text("Selected Action: \(action.rawValue)")  // 現在のアクションを表示。クイックアクションを使用した場合
                         .font(.largeTitle)
                         .foregroundColor(.white)
                 } else {
-                    Text("No Action Selected")  // アクションが選択されていない場合の表示
+                    Text("No Action Selected")  // アクションが選択されていない場合の表示。アプリを開いた時
                         .font(.largeTitle)
                         .foregroundColor(.gray)
                 }
             }
-
-//            if let action = quickActionsState.selectedAction {
-//                Image(systemName: action.imageName)
-//                    .resizable()
-//                    .frame(width: 150, height: 200)
-//                    .foregroundColor(action == .three ? .black : .white)
-//            }
         }
     }
 }

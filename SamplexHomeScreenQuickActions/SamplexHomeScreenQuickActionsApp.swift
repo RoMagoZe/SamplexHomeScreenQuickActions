@@ -28,7 +28,7 @@ struct SamplexHomeScreenQuickActionsApp: App {
                     case .inactive:
                         break
                     default:
-                        fatalError()
+                        break
                     }
                 }
         }
@@ -47,14 +47,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // またSceneDelegateを呼ぶために、configuration.delegateClassに下記で説明するSceneDelegateを渡しています。
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
 
+        // ショートカットアイテムのタイプをデバッグ用にコンソールに出力
         print("嗚呼", options.shortcutItem?.type)
+        // ショートカットアイテムに基づいてアクションを選択
         quickActionState.selectAction(by: options.shortcutItem)
-
+        // 新しいシーンの設定を定義するために UISceneConfiguration を作成
         let configuration = UISceneConfiguration(
+            // シーンの名前を取得
             name: connectingSceneSession.configuration.name,
+            // セッションの役割を取得
             sessionRole: connectingSceneSession.role
         )
+        // シーンのデリゲートクラスを設定 (SceneDelegate.self)
         configuration.delegateClass = SceneDelegate.self
+        // 構成を返して、シーンの初期化に使用
         return configuration
     }
 }
