@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B03489352CB2C14C00B0F6BA /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03489342CB2C14C00B0F6BA /* Configure.swift */; };
 		B0DB60222CA99E1F0038F3CB /* SamplexHomeScreenQuickActionsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB60212CA99E1F0038F3CB /* SamplexHomeScreenQuickActionsApp.swift */; };
 		B0DB60242CA99E1F0038F3CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB60232CA99E1F0038F3CB /* ContentView.swift */; };
 		B0DB60262CA99E200038F3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0DB60252CA99E200038F3CB /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B03489342CB2C14C00B0F6BA /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
 		B0DB601E2CA99E1F0038F3CB /* SamplexHomeScreenQuickActions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SamplexHomeScreenQuickActions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DB60212CA99E1F0038F3CB /* SamplexHomeScreenQuickActionsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplexHomeScreenQuickActionsApp.swift; sourceTree = "<group>"; };
 		B0DB60232CA99E1F0038F3CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				B0DB60212CA99E1F0038F3CB /* SamplexHomeScreenQuickActionsApp.swift */,
 				B0DB60232CA99E1F0038F3CB /* ContentView.swift */,
+				B03489342CB2C14C00B0F6BA /* Configure.swift */,
 				B0DB60252CA99E200038F3CB /* Assets.xcassets */,
 				B0DB60272CA99E200038F3CB /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				B0DB60242CA99E1F0038F3CB /* ContentView.swift in Sources */,
 				B0DB60222CA99E1F0038F3CB /* SamplexHomeScreenQuickActionsApp.swift in Sources */,
+				B03489352CB2C14C00B0F6BA /* Configure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
