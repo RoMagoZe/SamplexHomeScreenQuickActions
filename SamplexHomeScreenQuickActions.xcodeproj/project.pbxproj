@@ -20,6 +20,7 @@
 		B03489342CB2C14C00B0F6BA /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
 		B0915F862CB497CE00D9C180 /* QuickActionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionState.swift; sourceTree = "<group>"; };
 		B0915F882CB4982300D9C180 /* QuickAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAction.swift; sourceTree = "<group>"; };
+		B0915F8A2CB4A3E800D9C180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B0DB601E2CA99E1F0038F3CB /* SamplexHomeScreenQuickActions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SamplexHomeScreenQuickActions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DB60212CA99E1F0038F3CB /* SamplexHomeScreenQuickActionsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplexHomeScreenQuickActionsApp.swift; sourceTree = "<group>"; };
 		B0DB60232CA99E1F0038F3CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		B0DB60202CA99E1F0038F3CB /* SamplexHomeScreenQuickActions */ = {
 			isa = PBXGroup;
 			children = (
+				B0915F8A2CB4A3E800D9C180 /* Info.plist */,
 				B0DB60212CA99E1F0038F3CB /* SamplexHomeScreenQuickActionsApp.swift */,
 				B0DB60232CA99E1F0038F3CB /* ContentView.swift */,
 				B0915F862CB497CE00D9C180 /* QuickActionState.swift */,
@@ -287,6 +289,7 @@
 				DEVELOPMENT_TEAM = 57KXZ3ZY2U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SamplexHomeScreenQuickActions/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -316,6 +319,7 @@
 				DEVELOPMENT_TEAM = 57KXZ3ZY2U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SamplexHomeScreenQuickActions/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
