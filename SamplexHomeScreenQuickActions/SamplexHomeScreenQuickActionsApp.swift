@@ -17,9 +17,9 @@ struct SamplexHomeScreenQuickActionsApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(quickActionState)
-            // onChangeはWindowGroupの中で呼び出す
-                .onChange(of: scenePhase) { newValue in
-                    switch newValue {
+                // onChangeはWindowGroupの中で呼び出す
+                .onChange(of: scenePhase) { newPhase in
+                    switch newPhase {
                     case .active:
                         quickActionState.removeSelectedActionIfNeeded()
                     case .background:
@@ -41,14 +41,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     private let quickActionState = QuickActionState.shared
 
     // この関数は、Sceneが作成される時に、UIKitのための設定を行う
-    // このメソッドは起動時に一度呼ばれます。
+    // このメソッドは起動時に一度呼ばれる
     // この第三引数optionsは選択されたクイックアクションに紐づくUIApplicationShortcutItemを持っている為、
-    // そのshortcutItemをselectActionに渡して実行しています。
-    // またSceneDelegateを呼ぶために、configuration.delegateClassに下記で説明するSceneDelegateを渡しています。
+    // そのshortcutItemをselectActionに渡して実行
+    // またSceneDelegateを呼ぶために、configuration.delegateClassに下記で説明するSceneDelegateを渡す
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
 
         // ショートカットアイテムのタイプをデバッグ用にコンソールに出力
-        print("嗚呼", options.shortcutItem?.type)
+//        print("嗚呼", options.shortcutItem?.type)
         // ショートカットアイテムに基づいてアクションを選択
         quickActionState.selectAction(by: options.shortcutItem)
         // 新しいシーンの設定を定義するために UISceneConfiguration を作成
@@ -68,21 +68,31 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    // メインウィンドウを保持するプロパティ
+    // アプリのUIのルートコンテナとして、ビューやコントローラを管理するために使用
     var window: UIWindow?
 
+    // クイックアクションの選択状態を保持するシングルトンインスタンス
     private let quickActionState = QuickActionState.shared
 
+    // シーンがアプリに接続される直前に呼び出されるメソッド
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
+            // 起動時にクイックアクションが選択されている場合、その情報を quickActionState に反映
             if let shortcutItem = connectionOptions.shortcutItem {
                 quickActionState.selectAction(by: shortcutItem)
             }
+            // シーンが UIWindowScene であることを確認
             guard let _ = (scene as? UIWindowScene) else { return }
         }
 
+    // ホーム画面のクイックアクションが選択された時に呼び出されるメソッド
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        // 選択されたクイックアクションのタイトルをコンソールに出力
         print(shortcutItem.localizedTitle as Any)
-        quickActionState.selectAction(by: shortcutItem) // クイックアクションの選択を反映
+        // クイックアクションの選択を反映
+        quickActionState.selectAction(by: shortcutItem)
+        // クイックアクションの処理が完了したことを通知
         completionHandler(true)
     }
 }
