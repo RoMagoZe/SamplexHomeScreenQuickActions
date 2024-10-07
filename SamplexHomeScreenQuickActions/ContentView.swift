@@ -70,8 +70,11 @@ struct ContentView: View {
                 }
             }
         }
+        // showConfigurationがtrueの場合、設定ビューを表示
         if showConfiguration {
             Configure(showConfiguration: $showConfiguration)
+                // QuickActionStateのインスタンスを子ビューに渡す環境オブジェクトとして設定
+                // 環境オブジェクトは、アプリ内の他のビューでも簡単にアクセス可能
                 .environmentObject(quickActionsState)
         }
     }

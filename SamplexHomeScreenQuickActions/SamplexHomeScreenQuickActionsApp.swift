@@ -20,11 +20,13 @@ struct SamplexHomeScreenQuickActionsApp: App {
                 // onChangeはWindowGroupの中で呼び出す
                 .onChange(of: scenePhase) { newPhase in
                     switch newPhase {
+                    // active: ユーザーがアクティブに操作している状態
                     case .active:
                         quickActionState.removeSelectedActionIfNeeded()
+                    // background: アプリがバックグラウンドで動作している状態
                     case .background:
-                        print("back ground")
                         quickActionState.setActions()
+                    // inactive: 一時的に操作されていない状態
                     case .inactive:
                         break
                     default:
@@ -48,7 +50,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
 
         // ショートカットアイテムのタイプをデバッグ用にコンソールに出力
-//        print("嗚呼", options.shortcutItem?.type)
+        print("嗚呼", options.shortcutItem?.type)
         // ショートカットアイテムに基づいてアクションを選択
         quickActionState.selectAction(by: options.shortcutItem)
         // 新しいシーンの設定を定義するために UISceneConfiguration を作成
